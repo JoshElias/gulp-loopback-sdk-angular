@@ -71,7 +71,6 @@ module.exports = function (options) {
           } catch (err) {
               that.emit('error', new gutil.PluginError('gulp-loopback-sdk-angular', err));
           } finally {
-              console.log("donezo")
               return cb();
           }
       }
