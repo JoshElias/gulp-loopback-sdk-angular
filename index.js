@@ -18,8 +18,9 @@ function disconnectDataSource(prop, action, newValue) {
 
 module.exports = function (options) {
   return through.obj(function (file, enc, cb) {
+      var that = this;
       if (file.isNull()) {
-          this.push(file);
+          that.push(file);
           cb();
           return;
       }
@@ -58,7 +59,7 @@ module.exports = function (options) {
 
               gutil.log('Generated Angular services file.');
 
-              this.push(file);
+              that.push(file);
 
               var dataSources = app.dataSources;
               for (var dataSource in dataSources) {
@@ -68,8 +69,9 @@ module.exports = function (options) {
                   }
               }
           } catch (err) {
-              this.emit('error', new gutil.PluginError('gulp-loopback-sdk-angular', err));
+              that.emit('error', new gutil.PluginError('gulp-loopback-sdk-angular', err));
           } finally {
+              console.log("donezo")
               return cb();
           }
       }
